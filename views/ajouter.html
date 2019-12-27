@@ -1,0 +1,77 @@
+<!DOCTYPE html">
+<html>
+<head>
+	<title>Ma Ludothèque</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" type="text/css" href="res/style/style.css" />
+</head>
+<body>
+	<div id="header">
+		<div class="header-logo">
+			<img class="logo-img" src="res/img/logo.png" /> <span style="padding-left: 15px;">Ma Ludothèque</span>
+		</div>
+
+		
+		<div class="header-menu">
+			<ul id="menu_horizontal">
+				<li><a href="index.html" class="bouton">Accueil</a></li>
+				<li><a href="liste.html" class="bouton">Liste des jeux</a></li>  			
+				<li><a href="ajouter.html" class="bouton">Ajouter un jeu</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="content">
+		<div class="column">
+			<h3 class="title"> Ajouter un jeu </h3>
+			<form id="form-add">		
+				<div class="line-form">
+					<input placeholder="Nom du jeu" type="text" name="nom" id="nom" />
+				</div>
+				<div class="line-form">
+					<input placeholder="Age (à partir de) " type="number" name="age" id="age" />
+				</div>
+				<div class="line-form">
+					<input placeholder="Durée (minutes) " type="number" name="duree" id="duree" />
+				</div>
+				<div class="line-form">
+					<input placeholder="Nombre de joueur min" style="width: 49%;" type="number" name="min" id="min" />&nbsp;&nbsp;&nbsp;&nbsp;<input placeholder="Nombre de joueur max" style="width: 49%;"  type="number" name="max" id="max" />
+				</div>
+
+				<div class="line-form">
+					<input placeholder="Auteur" type="text" name="auteur" id="auteur" />
+				</div>
+				<div class="line-form">
+					<input placeholder="Editeur" type="text" name="editeur" id="editeur" />
+				</div>
+				<div class="line-form">
+					<input placeholder="Thèmes" type="text" name="theme" id="theme" />
+				</div>
+				<div class="line-form">
+					<div class="div-label">	<label for="">Type :</label> </div>
+					<input type="checkbox" name="strategie" id="strategie" /> <label for="strategie">Plateau</label>
+					<input type="checkbox" name="gestion" id="gestion" /> <label for="gestion">Cartes</label><br/>
+					<input type="checkbox" name="developpement" id="developpement" /> <label for="developpement">Dés</label>
+				</div>
+				<div class="line-form">
+					<div class="div-label">	<label for="">Image du jeu :</label> </div>
+					<input type="file" name="image" id="image" />
+				</div>
+				<div style="text-align: center">
+					<input type="submit" name="submit" value="Envoyer" /> 
+				</div>
+			</form>
+		</div>
+
+	</div>
+</body>
+<footer class="footer">
+	<div style="margin: auto;">
+		<div class=citation>
+			<i>"On ne cesse pas de jouer quand on devient vieux, mais on devient vieux quand on cesse de jouer"</i><br />
+			(Georges Bernard Shaw)
+		</div>
+		<p>&copy; Hutet Axel - Tous droits réservés</p>
+	</div>
+</footer>		
+</html>
+

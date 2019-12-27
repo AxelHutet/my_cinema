@@ -1,4 +1,8 @@
 <!DOCTYPE html">
+<?php
+        require_once ('../lib/membre.lib.php');
+        var_dump(getMembreById(1));
+?>
 <html>
 <head>
 	<title>Ma Ludothèque</title>

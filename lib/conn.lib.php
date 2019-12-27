@@ -4,7 +4,7 @@ define ("LOCATION", "localhost");
 define ("DB", "cinema");
 define ("PORT", 3306);
 define ("USER", "root");
-define ("PWD", "");
+define ("PWD", "biere1664");
 
 function getConnection() {
 

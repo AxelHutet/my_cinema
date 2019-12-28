@@ -28,7 +28,8 @@
 		<div class="list-games">
 				<h3 class="title"> Chercher un film </h3>
 				<div class="item-game">
-					<form>
+				     <form id="search_form">
+				        <input type="hidden" id="pagination" name="pagination" value='0' />
 						<label for="film_title">Titre</label>
 						<input type="text" name="film_title" id="film_title" placeholder="Titre du film"/><br/><br/>
 						<label for="film_genre">Genre</label>
@@ -51,34 +52,36 @@
                                 }
                             ?>
 						</select><br/><br/>
-						<input type="submit" value="Rechercher" /><br/><br/>
+						<input type="button" id='submitForm' value="Rechercher" /><br/><br/>
 					</form>
 				</div>
 			<div class="list-games">
 				<h3 class="title"> Liste des films </h3>
-				<?php
-                    $films = getAllFilm(0,15);
-                    foreach ($films as $film){
+                <div id='resultFilms'>
+                    <?php
+                        $films = getAllFilm(0,15);
+                        foreach ($films as $film){
 
-                        $curr_genre = getGenreById($film["id_genre"]);
-                        $curr_distrib = getDistribById($film["id_distrib"]) ;
-                        echo '<div class="item-game"><div class="game-description">';
-                        echo '<p><B>Titre :</B> '.$film["titre"].'</p>';
-                        if(is_array($curr_genre)){
-                            echo '<p><B>Genre :</B> '.getGenreById($film["id_genre"])["nom"].'</p>';
-                        }else{
-                            echo "<p><B>Genre :</B> -</p>";
-                        }
-                        if(is_array($curr_distrib)){
-                            echo '<p><B>Distributeur :</B> '.getDistribById($film["id_distrib"])["nom"].'</p>';
-                        }else{
-                            echo "<p><B>Distributeur :</B> -</p>";
-                        }
-                        echo '<p><B>Resumé :</B> '.$film["resum"].'</p>';
-                        echo '</div></div>';
+                            $curr_genre = getGenreById($film["id_genre"]);
+                            $curr_distrib = getDistribById($film["id_distrib"]) ;
+                            echo '<div class="item-game"><div class="game-description">';
+                            echo '<p><B>Titre :</B> '.$film["titre"].'</p>';
+                            if(is_array($curr_genre)){
+                                echo '<p><B>Genre :</B> '.getGenreById($film["id_genre"])["nom"].'</p>';
+                            }else{
+                                echo "<p><B>Genre :</B> -</p>";
+                            }
+                            if(is_array($curr_distrib)){
+                                echo '<p><B>Distributeur :</B> '.getDistribById($film["id_distrib"])["nom"].'</p>';
+                            }else{
+                                echo "<p><B>Distributeur :</B> -</p>";
+                            }
+                            echo '<p><B>Resumé :</B> '.$film["resum"].'</p>';
+                            echo '</div></div>';
 
-                    }
-                ?>
+                        }
+                    ?>
+                </div>
 			</div>
 		</div>
 		</div>
@@ -93,4 +96,19 @@
 		<p>&copy; Hutet Axel - Tous droits réservés</p>
 	</div>
 </footer>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#submitForm").click(function(){
+            $.ajax({
+                url : 'get_film.php', // La ressource ciblée
+                type:'POST',
+                data:$("#search_form").serialize(),
+                success : function(result){
+                    $("#resultFilms").html(result);
+                }
+            });
+        });
+    });
+</script>
 </html>

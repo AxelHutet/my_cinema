@@ -1,7 +1,7 @@
 <!DOCTYPE html">
 <?php
         require_once ('../lib/membre.lib.php');
-        var_dump(getAllMembre());
+        /*var_dump(getAllMembre());*/
 ?>
 <html>
 <head>

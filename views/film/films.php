@@ -1,7 +1,7 @@
 <!DOCTYPE html">
 <html>
 <head>
-	<title>Ma Ludothèque</title>
+	<title>My Cinema</title>
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" type="text/css" href="../res/style/style.css" />
 </head>

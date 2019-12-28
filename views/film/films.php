@@ -12,9 +12,9 @@
 		</div>
 		<div class="header-menu">
 			<ul id="menu_horizontal">
-				<li><a href="../index.html" class="bouton">Accueil</a></li>
-				<li><a href="film/films.html" class="bouton">Films</a></li>
-				<li><a href="membre/members.html" class="bouton">Membres</a></li>
+				<li><a href="../index.php" class="bouton">Accueil</a></li>
+				<li><a href="film/films.php" class="bouton">Films</a></li>
+				<li><a href="membre/members.php" class="bouton">Membres</a></li>
 			</ul>
 		</div>
 	</div>

@@ -12,7 +12,7 @@ function getHistoricalByMembre($client){
 }
 function addFilmHistorical($id_membre, $id_film, $date){
     $conn = getConnection();
-    $sql = "INSERT INTO historique_membre(id_membre, id_film, date) VALUES(".$id_membre.",".$id_film.",".$date.")";
+    $sql = "INSERT INTO historique_membre(id_membre, id_film, date) VALUES(".$id_membre.",".$id_film.",'".$date."')";
     if($result = $conn->query($sql)){
         return $result->fetch_assoc();
     }else{
@@ -21,8 +21,7 @@ function addFilmHistorical($id_membre, $id_film, $date){
 }
 function addAvis($avis, $id_membre, $id_film, $date){
     $conn = getConnection();
-    $sql = "ALTER TABLE historique_membre ADD avis VARCHAR(300)";
-    $sql .= "INSERT INTO historique_membre (avis) VALUES(".$avis.")";
+    $sql = "INSERT INTO historique_membre (avis) VALUES('".$avis."')";
     if($result = $conn->query($sql)){
         return $result->fetch_assoc();
     }else{

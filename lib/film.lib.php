@@ -1,42 +1,53 @@
 <?php
-require('conn.lib.php');
+require_once('conn.lib.php');
 
 
-function getFilmByTitle($title){
+function getFilmByTitle($title,$min=-1, $nbr=0){
     $conn = getConnection();
     $sql = 'SELECT * FROM film WHERE titre LIKE "%'.$title.'%"';
+    if($min != -1 && $nbr != 0){
+        $sql .= " LIMIT ".$min.", ".$nbr;
+    }
     if($result = $conn->query($sql)){
         return $result->fetch_assoc();
     }else{
         return "";
     }
 }
-function getFilmByGenre($genre){
+function getFilmByGenre($genre,$min=-1, $nbr=0){
     $conn = getConnection();
-    $idGenre = 'SELECT id_genre FROM genre WHERE nom='.$genre;
-    $sql = 'SELECT * FROM film WHERE id_genre='.$idGenre;
+    $sql = 'SELECT * FROM film WHERE id_genre='.$genre;
+    if($min != -1 && $nbr != 0){
+        $sql .= " LIMIT ".$min.", ".$nbr;
+    }
     if($result = $conn->query($sql)){
         return $result->fetch_assoc();
     }else{
         return "";
     }
 }
-function getFilmByDistrib($distrib){
+function getFilmByDistrib($distrib,$min=-1, $nbr=0){
     $conn = getConnection();
-    $idDistrib = 'SELECT id_distrib FROM distrib WHERE nom='.$distrib;
-    $sql = 'SELECT * FROM film WHERE id_distrib='.$idDistrib;
+    $sql = 'SELECT * FROM film WHERE id_distrib='.$distrib;
+    if($min != -1 && $nbr != 0){
+        $sql .= " LIMIT ".$min.", ".$nbr;
+    }
     if($result = $conn->query($sql)){
         return $result->fetch_assoc();
     }else{
         return "";
     }
 }
-function getAllFilm(){
+function getAllFilm($min=-1, $nbr=0){
     $conn = getConnection();
     $sql = 'SELECT * FROM film';
+    if($min != -1 && $nbr != 0){
+        $sql .= " LIMIT ".$min.", ".$nbr;
+    }
     if($result = $conn->query($sql)){
         return $result->fetch_all(MYSQLI_ASSOC);
     }else{
         return "";
     }
 }
+

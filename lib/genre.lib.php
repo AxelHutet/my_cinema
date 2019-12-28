@@ -1,18 +1,18 @@
 <?php
-require('conn.lib.php');
+require_once('conn.lib.php');
 
-function getFilmByGenre($genre){
+function getGenreById($genre){
     $conn = getConnection();
-    $sql = 'SELECT * FROM film WHERE titre LIKE'.$genre;
+    $sql = 'SELECT * FROM genre WHERE id_genre ='.$genre;
     if($result = $conn->query($sql)){
         return $result->fetch_assoc();
     }else{
         return "";
     }
 }
-function getAllFilm(){
+function getAllGenre(){
     $conn = getConnection();
-    $sql = 'SELECT * FROM film';
+    $sql = 'SELECT * FROM genre';
     if($result = $conn->query($sql)){
         return $result->fetch_all(MYSQLI_ASSOC);
     }else{

@@ -1,5 +1,5 @@
 <?php
- require('conn.lib.php');
+ require_once('conn.lib.php');
 
 function getMembreById($id){
     $conn = getConnection();

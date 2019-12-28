@@ -13,13 +13,13 @@
 <body>
 	<div id="header">
 		<div class="header-logo">
-			<img class="logo-img" src="../res/img/logo.png" /> <span style="padding-left: 15px;">Ma Ludothèque</span>
+			<img class="logo-img" src="../res/img/cinema.png" /> <span style="padding-left: 15px;">My Cinema</span>
 		</div>
 		<div class="header-menu">
 			<ul id="menu_horizontal">
 				<li><a href="../index.php" class="bouton">Accueil</a></li>
 				<li><a href="./films.php" class="bouton">Films</a></li>
-				<li><a href="membre/members.php" class="bouton">Membres</a></li>
+				<li><a href="../membre/members.php" class="bouton">Membres</a></li>
 			</ul>
 		</div>
 	</div>
@@ -41,7 +41,7 @@
                                 }
                             ?>
 						</select><br/><br/>
-						<label for="film_distrib">Genre</label>
+						<label for="film_distrib">Distributeur</label>
 						<select name="film_distrib" id="film_distrib" >
 						    <option value=""></option>
 							<?php
@@ -63,40 +63,34 @@
                         $curr_genre = getGenreById($film["id_genre"]);
                         $curr_distrib = getDistribById($film["id_distrib"]) ;
                         echo '<div class="item-game"><div class="game-description">';
-                        echo '<p>Titre : '.$film["titre"].'</p>';
+                        echo '<p><B>Titre :</B> '.$film["titre"].'</p>';
                         if(is_array($curr_genre)){
-                            echo '<p>Genre : '.getGenreById($film["id_genre"])["nom"].'</p>';
+                            echo '<p><B>Genre :</B> '.getGenreById($film["id_genre"])["nom"].'</p>';
                         }else{
-                            echo "<p>Genre : -</p>";
+                            echo "<p><B>Genre :</B> -</p>";
                         }
                         if(is_array($curr_distrib)){
-                            echo '<p>Distributeur : '.getDistribById($film["id_distrib"])["nom"].'</p>';
+                            echo '<p><B>Distributeur :</B> '.getDistribById($film["id_distrib"])["nom"].'</p>';
                         }else{
-                            echo "<p>Distributeur : -</p>";
+                            echo "<p><B>Distributeur :</B> -</p>";
                         }
-                        echo '<p>Resumé : '.$film["resum"].'</p>';
+                        echo '<p><B>Resumé :</B> '.$film["resum"].'</p>';
                         echo '</div></div>';
 
                     }
                 ?>
 			</div>
 		</div>
+		</div>
 	</div>
 </body>
 <footer class="footer">
 	<div style="margin: auto;">
 		<div class=citation>
-			<i>"On ne cesse pas de jouer quand on devient vieux, mais on devient vieux quand on cesse de jouer"</i><br />
-			(Georges Bernard Shaw)
+			<i>"Un film n'est pas une tranche de vie, c'est une tranche de gâteau."</i><br />
+			(Alfred Hitchcock)
 		</div>
 		<p>&copy; Hutet Axel - Tous droits réservés</p>
 	</div>
 </footer>
 </html>
-
-
-
-
-
-
-

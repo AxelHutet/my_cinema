@@ -12,7 +12,7 @@
 <body>
 	<div id="header">
 		<div class="header-logo">
-			<img class="logo-img" src="res/img/logo.png" /> <span style="padding-left: 15px;">My Cinema</span>
+			<img class="logo-img" src="res/img/cam.png" /> <span style="padding-left: 15px;">My Cinema</span>
 		</div>
 		<div class="header-menu">
 			<ul id="menu_horizontal">

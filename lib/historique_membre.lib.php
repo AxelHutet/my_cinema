@@ -3,9 +3,9 @@ require_once('conn.lib.php');
 
 function getHistoricalByMembre($client){
     $conn = getConnection();
-    $sql = "SELECT f.* from film f, historique_membre hm, membre m, fiche_personne fp WHERE fp.id_perso = m.id_fiche_perso AND m.id_membre = hm.id_membre AND hm.id_film = f.id_film AND fp.nom LIKE '%".$client."%'";
+    $sql = "SELECT hm.* from historique_membre hm WHERE hm.id_membre = ".$client. " ORDER BY DATE DESC";
     if($result = $conn->query($sql)){
-        return $result->fetch_assoc();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }else{
         return "";
     }

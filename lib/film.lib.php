@@ -1,6 +1,17 @@
 <?php
 require_once('conn.lib.php');
 
+
+function getFilmById($id){
+    $conn = getConnection();
+    $sql = 'SELECT * FROM film WHERE id_film='.$id;
+    if($result = $conn->query($sql)){
+        return $result->fetch_assoc();
+    }else{
+        return "";
+    }
+}
+
 function getFilmByDistribGenreAndTitle($title, $distrib, $genre, $pagination, $min = 0){
     $conn = getConnection();
     $sql = 'SELECT * FROM film WHERE 1=1 ';

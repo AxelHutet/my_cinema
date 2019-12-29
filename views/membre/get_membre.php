@@ -2,6 +2,7 @@
 require_once ('../../lib/historique_membre.lib.php');
 require_once ('../../lib/fiche_personne.lib.php');
 require_once ('../../lib/membre.lib.php');
+require_once ('../../lib/film.lib.php');
 
 $name = $_POST["nom_membre"];
 $forname  = $_POST["prenom_membre"];
@@ -16,13 +17,22 @@ $return_str = "";
 if(is_array($members) && count($members) > 0){
 
     foreach ($members as $member){
+        $list_historical = getHistoricalByMembre($member["id_membre"]);
 
         $curr_fichepersonne = getFichePersonneById($member["id_fiche_perso"]);
         $return_str .= '<div class="item-game"><div class="game-description">';
         $return_str .= '<p><B>Nom :</B> '.$curr_fichepersonne["nom"].'</p>';
         $return_str .= '<p><B>Prénom :</B> '.$curr_fichepersonne["prenom"].'</p>';
         $return_str .= '<p><B>ID :</B> '.$member["id_membre"].'</p>';
-        $return_str .= '</div></div>';
+        $return_str .= '</div><div class="" onclick="$(this).children(\'div\').toggle();"><a style="color:blue"><u>historique</u></a><div style="display:none;">';
+        if(!empty($list_historical)){
+            foreach($list_historical as $historic){
+                $film_title = getFilmById($historic["id_film"])["titre"];
+                $return_str .= '<p>'.date('Y/m/d h:m', strtotime($historic['date'])).' : '.$film_title.'</p><br />';
+            }
+        }
+
+        $return_str .= '</div></div></div>';
     }
 
 }

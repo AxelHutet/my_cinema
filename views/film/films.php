@@ -17,7 +17,6 @@
 		</div>
 		<div class="header-menu">
 			<ul id="menu_horizontal">
-				<li><a href="../index.php" class="bouton">Accueil</a></li>
 				<li><a href="./films.php" class="bouton">Films</a></li>
 				<li><a href="../membre/members.php"  class="bouton" >Membres</a></li>
 			</ul>
@@ -67,29 +66,6 @@
 			<div class="list-games">
 				<h3 class="title"> Liste des films </h3>
                 <div id='resultFilms'>
-                    <?php
-                        $films = getAllFilm(0,15);
-                        foreach ($films as $film){
-
-                            $curr_genre = getGenreById($film["id_genre"]);
-                            $curr_distrib = getDistribById($film["id_distrib"]) ;
-                            echo '<div class="item-game"><div class="game-description">';
-                            echo '<p><B>Titre :</B> '.$film["titre"].'</p>';
-                            if(is_array($curr_genre)){
-                                echo '<p><B>Genre :</B> '.getGenreById($film["id_genre"])["nom"].'</p>';
-                            }else{
-                                echo "<p><B>Genre :</B> -</p>";
-                            }
-                            if(is_array($curr_distrib)){
-                                echo '<p><B>Distributeur :</B> '.getDistribById($film["id_distrib"])["nom"].'</p>';
-                            }else{
-                                echo "<p><B>Distributeur :</B> -</p>";
-                            }
-                            echo '<p><B>Resumé :</B> '.$film["resum"].'</p>';
-                            echo '</div></div>';
-
-                        }
-                    ?>
                 </div>
 			</div>
 		</div>
@@ -100,6 +76,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $("#submitForm").click(function(){
+        $("#pagination").val(0);
             $.ajax({
                 url : 'get_film.php', // La ressource ciblée
                 type:'POST',
@@ -109,6 +86,7 @@
                 }
             });
         });
+        $("#submitForm").click();
     });
 
     function pagination_previous(offset, min){

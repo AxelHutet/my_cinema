@@ -19,7 +19,9 @@
 			<ul id="menu_horizontal">
 				<li><a href="../index.php" class="bouton">Accueil</a></li>
 				<li><a href="./films.php" class="bouton">Films</a></li>
-				<li><a href="../membre/members.php" class="bouton">Membres</a></li>
+				<li><a href="../membre/members.php if(strlen($genre) > 0){
+        $sql .= "AND id_genre=".$genre;
+    }" class="bouton">Membres</a></li>
 			</ul>
 		</div>
 	</div>
@@ -49,6 +51,16 @@
                                 $distribs = getAllDistrib();
                                 foreach($distribs as $distrib){
                                     echo "<option value=".$distrib['id_distrib'].">".$distrib['nom']."</option>";
+                                }
+                            ?>
+						</select><br/><br/>
+						<label for="pagination">Pagination</label>
+						<select name="pagination" id="pagination" >
+						    <option value=""></option>
+							<?php
+                                $pagis = array(5, 10, 15, 20, 25);
+                                foreach($pagis as $pagi){
+                                    echo "<option value=".$pagi.">".$pagi."</option>";
                                 }
                             ?>
 						</select><br/><br/>

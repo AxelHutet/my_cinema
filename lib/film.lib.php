@@ -2,11 +2,11 @@
 require_once('conn.lib.php');
 
 
-function getFilmByTitle($title,$min=0, $nbr=0){
+function getFilmByTitle($title,$min=0, $pagination){
     $conn = getConnection();
     $sql = 'SELECT * FROM film WHERE titre LIKE "%'.$title.'%"';
-    if($nbr != 0){
-        $sql .= " LIMIT ".$min.", ".$nbr;
+    if($pagination != 0){
+        $sql .= " LIMIT ".$min.", ".$pagination;
     }
     if($result = $conn->query($sql)){
         return $result->fetch_assoc();
@@ -39,7 +39,7 @@ function getFilmByDistrib($distrib,$min=0, $nbr=0){
     }
 }
 
-function getFilmByDistribGenreAndTitle($title, $distrib, $genre, $min = 0, $nbr=0){
+function getFilmByDistribGenreAndTitle($title, $distrib, $genre, $pagination, $min = 0){
     $conn = getConnection();
     $sql = 'SELECT * FROM film WHERE 1=1 ';
     if(strlen($title) > 0){
@@ -51,8 +51,11 @@ function getFilmByDistribGenreAndTitle($title, $distrib, $genre, $min = 0, $nbr=
     if(strlen($genre) > 0){
         $sql .= "AND id_genre=".$genre;
     }
-    if($nbr != 0){
-        $sql .= " LIMIT ".$min.", ".$nbr;
+    if($pagination == 0){
+        $sql .= " LIMIT ".$min.", 10";
+    }
+    if($pagination != 0){
+        $sql .= " LIMIT ".$min.", ".$pagination;
     }
     if($result = $conn->query($sql)){
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -60,7 +63,7 @@ function getFilmByDistribGenreAndTitle($title, $distrib, $genre, $min = 0, $nbr=
         return "";
     }
 }
-function getAllFilm($min=0, $nbr=0){
+function getAllFilm($min=0, $nbr=15){
     $conn = getConnection();
     $sql = 'SELECT * FROM film';
     if($nbr != 0){

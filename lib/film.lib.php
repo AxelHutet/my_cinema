@@ -52,10 +52,10 @@ function getFilmByDistribGenreAndTitle($title, $distrib, $genre, $pagination, $m
         $sql .= "AND id_genre=".$genre;
     }
     if($pagination == 0){
-        $sql .= " LIMIT ".$min.", 10";
+        $sql .= " LIMIT ".$min;
     }
     if($pagination != 0){
-        $sql .= " LIMIT ".$min.", ".$pagination;
+        $sql .= " LIMIT ".$min." OFFSET ".$pagination;
     }
     if($result = $conn->query($sql)){
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -63,6 +63,27 @@ function getFilmByDistribGenreAndTitle($title, $distrib, $genre, $pagination, $m
         return "";
     }
 }
+
+function getCountFilmByDistribGenreAndTitle($title, $distrib, $genre){
+    $conn = getConnection();
+    $sql = 'SELECT COUNT(*) FROM film WHERE 1=1 ';
+    if(strlen($title) > 0){
+        $sql .= "AND titre LIKE '%".$title."%'";
+    }
+    if(strlen($distrib) > 0){
+        $sql .= "AND id_distrib=".$distrib;
+    }
+    if(strlen($genre) > 0){
+        $sql .= "AND id_genre=".$genre;
+    }
+
+    if($result = $conn->query($sql)){
+        return $result->fetch_row();
+    }else{
+        return "";
+    }
+}
+
 function getAllFilm($min=0, $nbr=15){
     $conn = getConnection();
     $sql = 'SELECT * FROM film';

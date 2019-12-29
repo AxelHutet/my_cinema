@@ -19,9 +19,7 @@
 			<ul id="menu_horizontal">
 				<li><a href="../index.php" class="bouton">Accueil</a></li>
 				<li><a href="./films.php" class="bouton">Films</a></li>
-				<li><a href="../membre/members.php if(strlen($genre) > 0){
-        $sql .= "AND id_genre=".$genre;
-    }" class="bouton">Membres</a></li>
+				<li><a href="../membre/members.php"  class="bouton" >Membres</a></li>
 			</ul>
 		</div>
 	</div>
@@ -55,10 +53,9 @@
                             ?>
 						</select><br/><br/>
 						<label for="pagination">Pagination</label>
-						<select name="pagination" id="pagination" >
-						    <option value=""></option>
+						<select name="pagination_nbr" id="pagination_nbr" >
 							<?php
-                                $pagis = array(5, 10, 15, 20, 25);
+                                $pagis = array(5, 10, 20, 50);
                                 foreach($pagis as $pagi){
                                     echo "<option value=".$pagi.">".$pagi."</option>";
                                 }
@@ -99,15 +96,6 @@
 		</div>
 	</div>
 </body>
-<footer class="footer">
-	<div style="margin: auto;">
-		<div class=citation>
-			<i>"Un film n'est pas une tranche de vie, c'est une tranche de gâteau."</i><br />
-			(Alfred Hitchcock)
-		</div>
-		<p>&copy; Hutet Axel - Tous droits réservés</p>
-	</div>
-</footer>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -122,5 +110,29 @@
             });
         });
     });
+
+    function pagination_previous(offset, min){
+        $("#pagination").val(offset-min);
+         $.ajax({
+                url : 'get_film.php', // La ressource ciblée
+                type:'POST',
+                data:$("#search_form").serialize(),
+                success : function(result){
+                    $("#resultFilms").html(result);
+                }
+        });
+    }
+
+    function pagination_next(offset, min){
+        $("#pagination").val(offset+min);
+         $.ajax({
+                url : 'get_film.php', // La ressource ciblée
+                type:'POST',
+                data:$("#search_form").serialize(),
+                success : function(result){
+                    $("#resultFilms").html(result);
+                }
+        });
+    }
 </script>
 </html>

@@ -7,9 +7,12 @@ $distrib = $_POST["film_distrib"];
 $titre  = $_POST["film_title"];
 $genre = $_POST["film_genre"];
 $pagination = $_POST["pagination"];
+$pagination_nbr = $_POST["pagination_nbr"];
 
-$films = getFilmByDistribGenreAndTitle($titre,$distrib,$genre,$pagination,15);
+$films = getFilmByDistribGenreAndTitle($titre,$distrib,$genre,$pagination, $pagination_nbr);
+$films_count = getCountFilmByDistribGenreAndTitle($titre,$distrib,$genre);
 $return_str = "";
+
 if(is_array($films) && count($films) > 0){
 
     foreach ($films as $film){
@@ -34,10 +37,11 @@ if(is_array($films) && count($films) > 0){
     }
 
 }
-
-if(is_array($films) && count($films) == 15){
-    $return_str .= "<input type='button' value='Next' onclick='pagination_next(\'".$pagination."\'' />";
-    $return_str .= "<input type='button' value='Previous' onclick='pagination_previous(\'".$pagination."\'' />";
+if($pagination > 0){
+    $return_str .= "<input type='button' value='Previous' onclick='pagination_previous(".$pagination.",".$pagination_nbr.");' />";
+}
+if(is_array($films) && intval($films_count[0]) >  (intval($pagination_nbr)+intval($pagination)) ){
+    $return_str .= "<input type='button' value='Next' onclick='pagination_next(".$pagination.",".$pagination_nbr.");' />";
 }
 
 echo $return_str;
